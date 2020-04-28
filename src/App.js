@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
 
@@ -27,6 +27,9 @@ function App() {
         <Router>
 
             <Header/>
+            <br/>
+            <br/>
+
 
             <Switch>
                 <Route path="/" exact >
@@ -63,6 +66,10 @@ function App() {
             </Switch>
 
         </Router>
+
+        <br/>
+        <br/> <br/>
+        <br/>
 
         <Footer/>
 
