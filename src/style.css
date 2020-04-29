@@ -31,10 +31,16 @@
     height: 250px;
 }
 
+.author-img{
+    height: 280px;
+}
+
 
 
 .error{
     color:red;
 }
+
+
 
 

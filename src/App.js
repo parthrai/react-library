@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
 
 
+
+
 import Home from './components/Home'
 import Header from './components/common/header'
 import Footer from './components/common/footer'
@@ -21,10 +23,15 @@ import BookCreate from './components/books/pages/create'
 import BookUpdate from './components/books/pages/update'
 
 function App() {
+
+
+
   return (
     <div>
 
         <Router>
+
+
 
             <Header/>
             <br/>
@@ -32,6 +39,9 @@ function App() {
 
 
             <Switch>
+
+
+
                 <Route path="/" exact >
                     <Home/>
                 </Route>
@@ -63,7 +73,10 @@ function App() {
                 <Route path="/404" component={NotFound} exact/>
 
                 <Redirect to="/404" />
+
+
             </Switch>
+
 
         </Router>
 

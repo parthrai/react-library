@@ -1,7 +1,43 @@
 import React, {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import AuthorsList from '../../common/authors_list'
+
 const Create=()=>{
+
+    const AUTHORS = [
+        {
+            id:'a1',
+            name :'John Doe',
+            email : 'john.doe@gmail.com',
+            phone : '416-134-3456'
+
+        },
+
+        {
+            id:'a2',
+            name :'John Smith',
+            email : 'john.smith@gmail.com',
+            phone : '416-134-3454'
+
+        },
+        {
+            id:'a3',
+            name :'Jeff Alex',
+            email : 'jeff.alex@gmail.com',
+            phone : '416-134-3451'
+
+        },
+        {
+            id:'a4',
+            name :'Jane Smith',
+            email : 'jane.smith@gmail.com',
+            phone : '416-134-3452'
+
+        }
+
+
+    ]
 
     const {register, handleSubmit, errors}  = useForm()
 
@@ -21,12 +57,15 @@ const Create=()=>{
 
     }
 
-    const onSubmit=(formData,event)=>{
+    const onSubmit=  (formData,event)=>{
 
          console.log("Inside this function")
          console.log(formData)
 
             editShowMessage(true)
+
+
+
         event.target.reset()
 
         // next step will to make an axios call and send this data to express backend
@@ -63,9 +102,17 @@ const Create=()=>{
                             </div>
                             <div className="form-group">
                                 <label >Author:</label>
-                                <input type="text" name="author" className="form-control" placeholder="Enter author" ref={register({required:true})} />
+                                {/*<input type="text" name="author" className="form-control" placeholder="Enter author" ref={register({required:true})} />*/}
 
-                                {errors.author && <p className="error"><strong>Please enter a value for author</strong></p>}
+                                <select className="form-control" name="author">
+
+                                    <AuthorsList authors={AUTHORS}/>
+
+                                </select>
+
+
+
+                                {/*{errors.author && <p className="error"><strong>Please enter a value for author</strong></p>}*/}
 
                             </div>
 
