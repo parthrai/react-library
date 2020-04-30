@@ -14,6 +14,8 @@ const Create=()=>{
     const [errorMessage, editErrorMessage] = useState(false)
 
 
+
+
     const Message=()=>{
         if(showMessage){
             return(
@@ -89,7 +91,7 @@ const Create=()=>{
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <label >Name:</label>
-                                <input type="text" name="name" className="form-control" placeholder="Enter name" ref={register({required:true, minLength:3})} />
+                                <input  type="text" name="name" className="form-control" placeholder="Enter name" ref={register({required:true, minLength:3})} />
 
                                 {errors.name && <p className="error"><strong>Please enter a value for name</strong></p>}
 
