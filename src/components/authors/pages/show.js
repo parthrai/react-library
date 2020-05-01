@@ -43,7 +43,7 @@ const Show=(props)=>{
     const deleteAuthor=async (author_id)=>{
 
         try{
-            const response = await axios.delete(`http://localhost:5000/api/authors/${author_id}`)
+           const response = await axios.delete(`http://localhost:5000/api/authors/${author_id}`)
 
             console.log(response.data)
 
