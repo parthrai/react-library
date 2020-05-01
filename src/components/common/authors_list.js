@@ -10,7 +10,7 @@ const AuthorsList = props =>{
 
         {
             props.authors.map((author)=>{
-                return <option key={author.id} value={author.id} >{author.name} </option>
+                return <option key={author._id} value={author._id} >{author.name} </option>
             })
 
         }

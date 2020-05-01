@@ -18,16 +18,15 @@ const BookCard = props =>{
 
             {props.books.map( book =>{
                 return (
-                    <div className="col-lg-3" key={book.id}>
+                    <div className="col-lg-3" key={book._id}>
 
                         <div className="card">
-                            <img className="book-img" alt={book.title} src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg" />
-                            <h3>{book.title}</h3>
-                            <p className="author">-By <strong>{book.author}</strong></p>
+                            <img className="book-img" alt={book.name} src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg" />
+                            <h3>{book.name}</h3>
                             <p>{book.description}</p>
                             <p>
 
-                                <Link to={`/books/${book.id}/show`}>
+                                <Link to={`/books/${book._id}/show`}>
                                     <button>View Book</button>
                                 </Link>
 

@@ -10,8 +10,6 @@ const Update=(props)=>{
     let {id} = useParams()
 
 
-
-
     const {register, handleSubmit, errors}  = useForm()
 
     const [authorState,editAuthorState] = useState()

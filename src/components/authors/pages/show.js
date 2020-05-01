@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import {Link, useParams, Redirect, useHistory} from 'react-router-dom'
 import axios from 'axios'
-import AuthorCard from "./list";
+
+import BooksTable from '../../common/books_table'
 
 const Show=(props)=>{
 
@@ -61,7 +62,8 @@ const Show=(props)=>{
         if(isFetched){
 
             return (
-                <div className="col-lg-6" >
+                <>
+                <div className="col-lg-4" >
 
                     <div className="card">
                         <img className="author-img"  src="https://cactusthemes.com/blog/wp-content/uploads/2018/01/tt_avatar_small.jpg" />
@@ -69,14 +71,7 @@ const Show=(props)=>{
                         <p className="author"><strong>{authorState.author.email}</strong></p>
                         <p>{authorState.author.phone}</p>
                         <p>Total Books : {authorState.author.books.length}</p>
-                        <p>
 
-                            <Link to="/">
-                                <button>Profile</button>
-                            </Link>
-
-
-                        </p>
 
                         <p>
 
@@ -93,6 +88,12 @@ const Show=(props)=>{
 
                     </div>
                 </div>
+
+                <div className="col-lg-8">
+                    <BooksTable author_id={id}/>
+                </div>
+
+                </>
 
             )
         }else  return (
@@ -112,9 +113,11 @@ const Show=(props)=>{
 
     return (
         <div className="row">
-            <div className="col-lg-12 text-center">
+            <div className="col-lg-12 ">
 
-                <LoadComponent/>
+                <div className="row">
+                   <LoadComponent/>
+                </div>
 
             </div>
         </div>

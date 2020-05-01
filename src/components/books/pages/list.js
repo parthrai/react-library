@@ -1,49 +1,73 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import axios from 'axios'
 
-import BookCard from '../components/book_card'
+import BookCard from "../../books/pages/list";
+import BooksCard from "../../books/components/BooksCard"
+import AuthorCard from '../../authors/components/author_card'
 
-const  List=  ()=>{
+const List=()=>{
+
+    const [booksList, editBooks] = useState([])
+
+    const[isFetched, editIsFetched ] = useState(false);
 
 
 
+    useEffect( () => {
+        const fetchBooks= async ()=>{
 
-    const BOOKS = [
-        {
-            id:'b1',
-            title:'Learning JS',
-            description:'This book will teach you JS',
-            author:'a1'
-        },
-        {
-            id:'b2',
-            title:'Learning HTML',
-            description:'This book will teach you HTML',
-            author:'a1'
-        },
-        {
-            id:'b3',
-            title:'Learning PHP',
-            description:'This book will teach you PHP',
-            author:'a2'
-        },
-        {
-            id:'b4',
-            title:'Learning MERN',
-            description:'This book will teach you MERN',
-            author:'a1'
+            try{
+                const response = await axios.get('http://localhost:5000/api/books')
+
+                console.log("response is "+ response)
+                editBooks(response.data)
+
+                editIsFetched(true)
+
+            }catch (e) {
+                console.log(e)
+            }
+
         }
-    ]
+
+        fetchBooks()
+
+    },[]);
+
+    const LoadComponent =()=>{
+
+        if(isFetched){
+
+            return (
+                <BooksCard books={booksList.books}/>
+
+            )
+        }else  return (
+
+            <div>
+
+                <img src="https://media.giphy.com/media/11FuEnXyGsXFba/giphy.gif" height="200"/>
+
+                <h3>Loading data, please wait</h3>
+
+
+            </div>
+        )
+    }
+
+
+
+
 
 
     return (
         <div className="row">
             <div className="col-lg-12 text-center">
-                <h1>This page will list all the books</h1>
+                <h1>This page will list all the Books</h1>
 
                 <br/><br/>
 
-                <BookCard books={BOOKS}/>
-
+                <LoadComponent/>
 
             </div>
         </div>

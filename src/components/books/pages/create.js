@@ -1,48 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
+import axios from 'axios'
 
 import AuthorsList from '../../common/authors_list'
 
 const Create=()=>{
 
-    const AUTHORS = [
-        {
-            id:'a1',
-            name :'John Doe',
-            email : 'john.doe@gmail.com',
-            phone : '416-134-3456'
-
-        },
-
-        {
-            id:'a2',
-            name :'John Smith',
-            email : 'john.smith@gmail.com',
-            phone : '416-134-3454'
-
-        },
-        {
-            id:'a3',
-            name :'Jeff Alex',
-            email : 'jeff.alex@gmail.com',
-            phone : '416-134-3451'
-
-        },
-        {
-            id:'a4',
-            name :'Jane Smith',
-            email : 'jane.smith@gmail.com',
-            phone : '416-134-3452'
-
-        }
-
-
-    ]
 
     const {register, handleSubmit, errors}  = useForm()
 
     const [showMessage, editShowMessage] = useState(false)
-
+    const [authorsList, editAuthors] = useState({authors:[]})
 
     const Message=()=>{
         if(showMessage){
@@ -57,10 +25,41 @@ const Create=()=>{
 
     }
 
-    const onSubmit=  (formData,event)=>{
+
+    useEffect( ()=>{
+
+        const fetchAuthors = async ()=>{
+
+           try{
+               const response = await axios.get('http://localhost:5000/api/authors')
+                console.log(response.data)
+               editAuthors(response.data)
+
+
+           }catch(e){
+               console.log("ERROR - " +e)
+           }
+        }
+
+        fetchAuthors()
+    },[])
+
+    const onSubmit=  async (formData,event)=>{
 
          console.log("Inside this function")
          console.log(formData)
+
+
+            try{
+
+             const response = await axios.post('http://localhost:5000/api/books',formData)
+
+                console.log(response.data)
+
+            }catch (e) {
+
+                console.log("ERROR --- "+ e)
+            }
 
             editShowMessage(true)
 
@@ -95,18 +94,18 @@ const Create=()=>{
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <label >Title:</label>
-                                <input type="text" name="title" className="form-control" placeholder="Enter title" ref={register({required:true, minLength:3})} />
+                                <input type="text" name="name" className="form-control" placeholder="Enter title" ref={register({required:true, minLength:3})} />
 
-                                {errors.title && <p className="error"><strong>Please enter a value for title</strong></p>}
+                                {errors.name && <p className="error"><strong>Please enter a value for title</strong></p>}
 
                             </div>
                             <div className="form-group">
                                 <label >Author:</label>
                                 {/*<input type="text" name="author" className="form-control" placeholder="Enter author" ref={register({required:true})} />*/}
 
-                                <select className="form-control" name="author">
+                                <select className="form-control" name="author_id" ref={register}>
 
-                                    <AuthorsList authors={AUTHORS}/>
+                                    <AuthorsList authors={authorsList.authors}/>
 
                                 </select>
 
