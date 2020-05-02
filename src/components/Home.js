@@ -2,7 +2,6 @@ import React from 'react'
 
 const Home=()=>{
 
-    alert(process.env.REACT_APP_NAME)
 
     return (
         <div className="row">

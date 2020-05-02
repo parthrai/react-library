@@ -17,7 +17,7 @@ const List=()=>{
         const fetchBooks= async ()=>{
 
             try{
-                const response = await axios.get('http://localhost:5000/api/books')
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_API}/books`)
 
                 console.log("response is "+ response)
                 editBooks(response.data)

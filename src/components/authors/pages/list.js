@@ -17,7 +17,7 @@ const List=()=>{
         const fetchAuthors= async ()=>{
 
             try{
-                const response = await axios.get('http://localhost:5000/api/authors')
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_API}/authors`)
 
                 console.log("response is "+ response)
                 editAuthors(response.data)

@@ -20,7 +20,7 @@ const Update=(props)=>{
     const fetchData=async ()=>{
 
         try{
-            const response = await axios.get(`http://localhost:5000/api/authors/${id}`)
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_API}/authors/${id}`)
             editAuthorState(response.data)
 
             editIsFetched(true)
@@ -146,7 +146,7 @@ const Update=(props)=>{
 
         try{
 
-            await axios.patch(`http://localhost:5000/api/authors/${id}`,formData)
+            await axios.patch(`${process.env.REACT_APP_BACKEND_API}/authors/${id}`,formData)
             editShowMessage(true)
             fetchData()
 

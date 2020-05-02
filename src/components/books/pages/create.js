@@ -31,7 +31,7 @@ const Create=()=>{
         const fetchAuthors = async ()=>{
 
            try{
-               const response = await axios.get('http://localhost:5000/api/authors')
+               const response = await axios.get(`${process.env.REACT_APP_BACKEND_API}/authors`)
                 console.log(response.data)
                editAuthors(response.data)
 
@@ -52,7 +52,7 @@ const Create=()=>{
 
             try{
 
-             const response = await axios.post('http://localhost:5000/api/books',formData)
+             const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/books`,formData)
 
                 console.log(response.data)
 
